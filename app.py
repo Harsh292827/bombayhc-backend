@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "✅ Bombay HC Scraper backend is working."
+    return "✅ Bombay HC Scraper is working."
 
 @app.route('/scrape')
 def scrape():
@@ -17,7 +17,7 @@ def scrape():
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
     except Exception as e:
-        return jsonify({"error": f"Request failed: {str(e)}"}), 500
+        return jsonify({"error": str(e)}), 500
 
     soup = BeautifulSoup(response.text, 'html.parser')
     cards = soup.select('#cardContainer .card')
